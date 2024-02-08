@@ -20,7 +20,15 @@ const power = function(num1, num2) {
 
 const operate = function(operation, num1, num2) {
     return operation(num1, num2);
-}
+};
+
+let displayValue = '';
+let display = document.querySelector('#display');
+display.textContent = displayValue;
+
+let digitos = document.querySelector('.digitos');
+
+
 
 // const factorial = function(num1) {
 // 	let arr = Array.from(Array(num1+1).keys());
