@@ -26,7 +26,25 @@ let displayValue = '';
 let display = document.querySelector('#display');
 display.textContent = displayValue;
 
-let digitos = document.querySelector('.digitos');
+let digitos = document.querySelectorAll('.digitos');
+
+// let updateDisplay = function() {
+//   let nextDigit = '5';
+//   displayValue += nextDigit;
+//   display.textContent = displayValue;
+// };
+
+// for (var i=1; i < digitos.lenght; i++) {
+  // console.log(digitos[i]);
+digitos.forEach(dig => dig.addEventListener('click', function() {
+    let nextDigit = this.id;
+    displayValue += ' ' + nextDigit;
+    display.textContent = displayValue
+  }));
+// for (var i=0; i < digitos.lenght; i++) {
+//   digitos[i].addEventListener('click', updateDisplay)
+// }
+
 
 
 
