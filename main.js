@@ -27,7 +27,8 @@ let display = document.querySelector('#display');
 display.textContent = displayValue;
 
 let digitos = document.querySelectorAll('.digitos');
-
+let operadores = document.querySelectorAll('.operadores');
+let borradores = document.querySelectorAll('.borradores');
 // let updateDisplay = function() {
 //   let nextDigit = '5';
 //   displayValue += nextDigit;
@@ -38,9 +39,23 @@ let digitos = document.querySelectorAll('.digitos');
   // console.log(digitos[i]);
 digitos.forEach(dig => dig.addEventListener('click', function() {
     let nextDigit = this.id;
-    displayValue += ' ' + nextDigit;
+    displayValue += nextDigit;
     display.textContent = displayValue
   }));
+
+operadores.forEach(dig => dig.addEventListener('click', function() {
+  let nextDigit = this.id;
+  if (displayValue[displayValue.length - 1].includes(' ')) {   
+  } else {
+    displayValue += ' ' + nextDigit + ' ';
+  };
+  display.textContent = displayValue
+}));
+
+borradores.forEach(dig => dig.addEventListener('click', function() {
+  displayValue = ''
+  display.textContent = displayValue
+}));
 // for (var i=0; i < digitos.lenght; i++) {
 //   digitos[i].addEventListener('click', updateDisplay)
 // }
