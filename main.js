@@ -41,13 +41,15 @@ let igual = document.querySelector('.igual');
   // console.log(digitos[i]);
 digitos.forEach(dig => dig.addEventListener('click', function() {
     let nextDigit = this.id;
-    displayValue += nextDigit;
+    if (displayValue.split([' ']).length <= 3) {
+      displayValue += nextDigit;
+    }
     display.textContent = displayValue
   }));
 
 operadores.forEach(dig => dig.addEventListener('click', function() {
   let nextDigit = this.id;
-  if (displayValue.slice(-1).includes(' ')) {   
+  if ((displayValue.slice(-1).includes(' ')) | (displayValue.split([' ']).length > 2)) {   
   } else {
     displayValue += ' ' + nextDigit + ' ';
   };
@@ -61,7 +63,7 @@ borradores.forEach(dig => dig.addEventListener('click', function() {
 
 punto.addEventListener('click', function() {
   lastNumber = displayValue.split([' ']).slice(-1)[0];
-  if (lastNumber.includes('.')) {
+  if ((lastNumber.includes('.')) | (displayValue.split([' ']).length > 3)) {
 
   } else { displayValue += '.';
   }
@@ -73,7 +75,19 @@ igual.addEventListener('click', function() {
   op = displayValue.split([' '])[1];
   num2 = parseFloat(displayValue.split([' '])[2]);
   if (op === '+') {
-    displayValue = add(num1, num2).toString()
+    displayValue = operate(add, num1, num2).toString()
+  }
+  else if (op === '-') {
+    displayValue = operate(subtract,num1, num2).toString()
+  }
+  else if (op === '*') {
+    displayValue = operate(multiply,num1, num2).toString()
+  }
+  else if (op === '/') {
+    displayValue = operate(divide,num1, num2).toString()
+  }
+  else if (op === '**') {
+    displayValue = operate(power,num1, num2).toString()
   }
   display.textContent = displayValue
 });
