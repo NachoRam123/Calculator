@@ -29,6 +29,8 @@ display.textContent = displayValue;
 let digitos = document.querySelectorAll('.digitos');
 let operadores = document.querySelectorAll('.operadores');
 let borradores = document.querySelectorAll('.borradores');
+let punto = document.querySelector('.punto');
+let igual = document.querySelector('.igual');
 // let updateDisplay = function() {
 //   let nextDigit = '5';
 //   displayValue += nextDigit;
@@ -45,7 +47,7 @@ digitos.forEach(dig => dig.addEventListener('click', function() {
 
 operadores.forEach(dig => dig.addEventListener('click', function() {
   let nextDigit = this.id;
-  if (displayValue[displayValue.length - 1].includes(' ')) {   
+  if (displayValue.slice(-1).includes(' ')) {   
   } else {
     displayValue += ' ' + nextDigit + ' ';
   };
@@ -53,9 +55,29 @@ operadores.forEach(dig => dig.addEventListener('click', function() {
 }));
 
 borradores.forEach(dig => dig.addEventListener('click', function() {
-  displayValue = ''
+  displayValue = '';
   display.textContent = displayValue
 }));
+
+punto.addEventListener('click', function() {
+  lastNumber = displayValue.split([' ']).slice(-1)[0];
+  if (lastNumber.includes('.')) {
+
+  } else { displayValue += '.';
+  }
+  display.textContent = displayValue
+});
+
+igual.addEventListener('click', function() {
+  num1 = parseFloat(displayValue.split([' '])[0]);
+  op = displayValue.split([' '])[1];
+  num2 = parseFloat(displayValue.split([' '])[2]);
+  if (op === '+') {
+    displayValue = add(num1, num2).toString()
+  }
+  display.textContent = displayValue
+});
+
 // for (var i=0; i < digitos.lenght; i++) {
 //   digitos[i].addEventListener('click', updateDisplay)
 // }
